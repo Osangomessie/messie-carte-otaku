@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte d'Identité Otaku</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+     </style>
+</head>
+<body>
+
+    <div id="carteOtaku" class="card-container">
+        <div class="header">Carte d'Identité Otaku</div>
+        <div class="chip"></div>
+        <div class="profile-section">
+            <div class="profile-picture">
+                <img id="photoAffiche" src="" alt="Photo">
+            </div>
+            <div class="info-section">
+                <p><strong>Nom :</strong> <span id="pseudoAffiche">---</span></p>
+                <p><strong>Prénom :</strong> <span id="nomAffiche">---</span></p>
+                <p><strong>Personnage préféré :</strong> <span id="nationaliteAffiche">---</span></p>
+                <p><strong>Anime préféré :</strong> <span id="statutAffiche">---</span></p>
+                <p><strong>Type de manga :</strong> <span id="genreAffiche">---</span></p>
+                <p><strong>Rang :</strong> <span id="citationAffiche">---</span></p>
+            </div>
+        </div>
+        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=OtakuCard" alt="QR Code">
+        <footer>Carte officielle Otaku</footer>
+    </div>
+
+    <button class="btn-download" onclick="downloadCarte()">Télécharger la carte</button>
+
+    <script src="carte.js">
+           </script>
+
+</body>
+  </html>
+  
