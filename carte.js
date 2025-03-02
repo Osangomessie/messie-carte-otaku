@@ -1,4 +1,4 @@
-function getQueryParams() {
+      function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
             return {
                 pseudo: params.get("pseudo"),
@@ -6,8 +6,7 @@ function getQueryParams() {
                 nationalite: params.get("nationalite"),
                 statut: params.get("statut"),
                 genre: params.get("genre"),
-                citation: params.get("citation"),
-                photo: params.get("photo")
+                citation: params.get("citation")
             };
         }
 
@@ -19,14 +18,33 @@ function getQueryParams() {
         document.getElementById("genreAffiche").textContent = data.genre || "---";
         document.getElementById("citationAffiche").textContent = data.citation || "---";
 
-        if (data.photo) {
-            document.getElementById("photoAffiche").src = decodeURIComponent(data.photo);
+        // On recupere la photo de localStorage
+        const photoData = localStorage.getItem("otakuPhoto");
+        if (photoData) {
+            document.getElementById("photoAffiche").src = photoData;
         }
+
+        // C'est mieux d'utiliser du json pour générer un QR Code dynamique basé sur les données de la carte
+        const cardData = JSON.stringify(data);
+        const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(cardData)}`;
+        document.getElementById("qrCode").src = qrCodeUrl;
+
+        // On supprimer la photo de localStorage après utilisation pour ne pas surcharger le navigateur mais tu peux supprimer cette partie
+        localStorage.removeItem("otakuPhoto");
 
         function downloadCarte() {
             const card = document.getElementById("carteOtaku");
+            // Attendre que toutes les images soient chargées
+            const images = card.getElementsByTagName("img");
+            const imagePromises = Array.from(images).map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.onload = resolve;
+                    img.onerror = resolve; // Continuer même en cas d'erreur
+                });
+            });
 
-            setTimeout(() => {
+            Promise.all(imagePromises).then(() => {
                 html2canvas(card, {
                     scale: 3,
                     useCORS: true,
@@ -41,6 +59,5 @@ function getQueryParams() {
                 }).catch(error => {
                     console.error("Erreur de capture :", error);
                 });
-            }, 500);
+            });
         }
- 
