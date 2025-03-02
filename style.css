@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family:georgia;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Effet de fond animé */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 300% 300%;
+            animation: neonMove 8s infinite alternate;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        @keyframes neonMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .form-container {
+            background: rgba(10, 10, 20, 0.95);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            border: 2px solid #0ff;
+        }
+
+        .form-container h3 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0ff;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #0ff;
+            animation: glitch 1s infinite alternate;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 5px #ff00ff, -2px -2px 5px #00ffff; }
+            100% { text-shadow: -2px -2px 5px #ff00ff, 2px 2px 5px #00ffff; }
+        }
+
+        input {
+            display: block;
+            width: 90%;
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+            color: #fff;
+            background: rgba(0, 255, 255, 0.2);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: rgba(0, 255, 255, 0.4);
+            box-shadow: 0px 0px 10px #0ff;
+        }
+
+        .file-label {
+            display: block;
+            background: rgba(255, 0, 255, 0.5);
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .file-label:hover {
+            background: rgba(255, 0, 255, 0.8);
+            box-shadow: 0 0 10px #ff00ff;
+        }
+
+        #photoInput {
+            display: none;
+        }
+
+        #preview {
+            margin-top: 15px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: none;
+            border: 3px solid #ff00ff;
+        }
+
+        button {
+            background: #00ffff;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            margin-top: 15px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        button:hover {
+            background: #ff00ff;
+            box-shadow: 0 0 15px #ff00ff;
+        }
+        
